@@ -1,0 +1,87 @@
+---
+import { profile } from '../data/profile';
+import ContactLinks from './ContactLinks.astro';
+---
+
+<div id="hero-stage" class="bg-white dark:bg-slate-950">
+  <div id="hero-inner">
+    <img
+      src={profile.avatar}
+      alt={`${profile.firstName} ${profile.lastName}`}
+      class="w-44 h-44 rounded-full object-cover object-[center_20%] mb-8"
+    />
+
+    <h1 class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3">
+      {profile.firstName} {profile.lastName}
+    </h1>
+
+    <p class="text-lg font-mono text-blue-600 dark:text-blue-400 mb-8">
+      {profile.handle}
+    </p>
+
+    <ContactLinks email={profile.email} linkedin={profile.linkedin} />
+  </div>
+</div>
+
+<style>
+  #hero-stage {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: height 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s ease 0.8s;
+    border-bottom: 1px solid transparent;
+  }
+
+  #hero-stage.shrunk {
+    height: 440px;
+    border-bottom-color: var(--color-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #hero-stage.shrunk {
+      border-bottom-color: var(--color-slate-800);
+    }
+  }
+
+  #hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #hero-stage.shrunk #hero-inner {
+    transform: scale(1.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #hero-stage,
+    #hero-inner {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.getElementById('hero-stage');
+    const content = document.getElementById('page-content');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      stage?.classList.add('shrunk');
+      content?.classList.add('visible');
+    } else {
+      setTimeout(() => {
+        stage?.classList.add('shrunk');
+        setTimeout(() => content?.classList.add('visible'), 750);
+      }, 800);
+    }
+  });
+</script>

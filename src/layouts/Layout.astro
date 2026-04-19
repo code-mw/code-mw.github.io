@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.firstName} ${profile.lastName} — ${profile.tagline}`,
+  description = 'Senior DevOps and SRE Engineer specializing in AWS, Terraform, Kubernetes, and CI/CD pipelines.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    {Astro.site && (
+      <meta property="og:image" content={new URL(profile.avatar, Astro.site).href} />
+    )}
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 antialiased min-h-screen">
+    <slot />
+  </body>
+</html>
