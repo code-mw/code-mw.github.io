@@ -8,18 +8,19 @@ import ContactLinks from './ContactLinks.astro';
     <img
       src={profile.avatar}
       alt={`${profile.firstName} ${profile.lastName}`}
-      class="w-32 h-32 sm:w-44 sm:h-44 rounded-full object-cover object-[center_20%] mb-6 sm:mb-8"
+      id="hero-avatar"
     />
-
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 text-center">
-      {profile.firstName} {profile.lastName}
-    </h1>
-
-    <p class="text-base sm:text-lg font-mono text-blue-600 dark:text-blue-400 mb-6 sm:mb-8">
-      {profile.handle}
-    </p>
-
-    <ContactLinks email={profile.email} linkedin={profile.linkedin} />
+    <div id="hero-text">
+      <h1 id="hero-name" class="text-gray-900 dark:text-white">
+        {profile.firstName} {profile.lastName}
+      </h1>
+      <p id="hero-handle" class="font-mono text-blue-600 dark:text-blue-400">
+        {profile.handle}
+      </p>
+      <div id="hero-links">
+        <ContactLinks email={profile.email} linkedin={profile.linkedin} />
+      </div>
+    </div>
   </div>
 </div>
 
@@ -39,7 +40,7 @@ import ContactLinks from './ContactLinks.astro';
   }
 
   #hero-stage.shrunk {
-    height: 440px;
+    height: 20svh;
     border-bottom-color: var(--color-gray-200);
   }
 
@@ -51,8 +52,9 @@ import ContactLinks from './ContactLinks.astro';
 
   #hero-inner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
     transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0 1.5rem;
   }
@@ -61,13 +63,41 @@ import ContactLinks from './ContactLinks.astro';
     transform: scale(1.2);
   }
 
-  @media (max-width: 640px) {
-    #hero-stage.shrunk {
-      height: 340px;
-    }
+  #hero-avatar {
+    width: clamp(5rem, 9vw, 10rem);
+    height: clamp(5rem, 9vw, 10rem);
+    border-radius: 9999px;
+    object-fit: cover;
+    object-position: center 20%;
+    flex-shrink: 0;
+  }
 
+  #hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.3rem, 0.8vh, 0.6rem);
+  }
+
+  #hero-name {
+    font-size: clamp(1.5rem, 3.2vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  #hero-handle {
+    font-size: clamp(0.8rem, 1.1vw, 1.1rem);
+    margin: 0;
+  }
+
+  #hero-links :global(div) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 480px) {
     #hero-stage.shrunk #hero-inner {
-      transform: scale(1.1);
+      transform: scale(1.0);
     }
   }
 
