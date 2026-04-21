@@ -1,6 +1,7 @@
 ---
 const tabs = [
   { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
 ];
 ---
 
@@ -91,12 +92,22 @@ const tabs = [
       });
     };
 
-    // Default active tab
     activate('about');
 
-    // Update active on click
     tabs.forEach(tab => {
       tab.addEventListener('click', () => activate(tab.dataset.tab ?? ''));
     });
+
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) activate(entry.target.id);
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+
+    sections.forEach(section => observer.observe(section));
   });
 </script>

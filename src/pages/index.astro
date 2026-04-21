@@ -3,11 +3,32 @@ import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import NavBar from '../components/NavBar.astro';
 import AboutSection from '../components/AboutSection.astro';
+import SkillsSection from '../components/SkillsSection.astro';
 import { profile } from '../data/profile';
 ---
 
 <Layout>
   <HeroSection />
   <NavBar />
-  <AboutSection paragraphs={profile.about} />
+  <main id="page-content">
+    <AboutSection paragraphs={profile.about} />
+    <SkillsSection />
+  </main>
 </Layout>
+
+<style>
+  #page-content {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  #page-content.visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #page-content {
+      transition: none;
+    }
+  }
+</style>

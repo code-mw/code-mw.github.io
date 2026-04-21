@@ -1,0 +1,199 @@
+---
+interface Skill {
+  name: string;
+  level: 1 | 2 | 3 | 4 | 5;
+}
+
+interface SkillCategory {
+  name: string;
+  skills: Skill[];
+}
+
+const levelLabel = (level: number): string =>
+  (['', 'Familiar', 'Intermediate', 'Proficient', 'Advanced', 'Expert'] as const)[level] ?? '';
+
+const categories: SkillCategory[] = [
+  {
+    name: 'Languages',
+    skills: [
+      { name: 'PHP', level: 4 },
+      { name: 'Python', level: 3 },
+      { name: 'GoLang', level: 2 },
+      { name: 'Bash', level: 3 },
+      { name: 'SQL', level: 4 },
+    ],
+  },
+  {
+    name: 'Cloud and Infrastructure',
+    skills: [
+      { name: 'AWS', level: 4 },
+      { name: 'Cloudflare', level: 1 },
+      { name: 'Terraform / Terragrunt', level: 5 },
+      { name: 'Docker', level: 4 },
+      { name: 'Kubernetes', level: 2 },
+      { name: 'Packer', level: 3 },
+    ],
+  },
+  {
+    name: 'Operations',
+    skills: [
+      { name: 'Linux (Debian, Fedora)', level: 4 },
+      { name: 'Puppet', level: 5 },
+      { name: 'Ansible', level: 2 },
+      { name: 'Jenkins', level: 5 },
+      { name: 'Zabbix', level: 5 },
+      { name: 'Vault (HashiCorp)', level: 4 },
+    ],
+  },
+  {
+    name: 'AI Tools',
+    skills: [
+      { name: 'Claude Code', level: 4 },
+      { name: 'GitHub Copilot', level: 4 },
+    ],
+  },
+];
+---
+
+<section id="skills" class="max-w-2xl mx-auto px-6 py-16">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Skills</h2>
+
+  <div class="skills-categories">
+    {categories.map(category => (
+      <div class="skill-group">
+        <p class="category-label">{category.name}</p>
+        <ul class="skill-list">
+          {category.skills.map(skill => (
+            <li class="skill-row">
+              <span class="skill-name">{skill.name}</span>
+              <div class="skill-meter">
+                <div class="skill-dots" aria-label={`${skill.level} of 5`}>
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <span class={`dot ${i <= skill.level ? 'dot--filled' : 'dot--empty'}`} />
+                  ))}
+                </div>
+                <span class="skill-level-label">{levelLabel(skill.level)}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .category-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-list {
+      border-top-color: var(--color-slate-800);
+    }
+  }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    transition: background-color 0.15s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-row {
+      border-bottom-color: var(--color-slate-900);
+    }
+  }
+
+  .skill-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-name {
+      color: var(--color-gray-300);
+    }
+  }
+
+  .skill-meter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .skill-dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .dot {
+    display: block;
+    width: 22px;
+    height: 6px;
+    border-radius: 2px;
+  }
+
+  .dot--filled {
+    background-color: var(--color-blue-600);
+  }
+
+  .dot--empty {
+    background-color: var(--color-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .dot--filled {
+      background-color: var(--color-blue-400);
+    }
+    .dot--empty {
+      background-color: var(--color-slate-700);
+    }
+  }
+
+  .skill-level-label {
+    font-size: 0.6875rem;
+    color: var(--color-gray-400);
+    min-width: 5.5rem;
+    text-align: right;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-level-label {
+      color: var(--color-gray-500);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .skill-level-label {
+      display: none;
+    }
+
+    .dot {
+      width: 18px;
+    }
+  }
+</style>
