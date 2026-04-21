@@ -54,9 +54,9 @@ import ContactLinks from './ContactLinks.astro';
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: min(clamp(1.25rem, 3vw, 2.5rem), 3svh);
+    gap: min(clamp(1.25rem, 4vw, 3.5rem), 4svh);
     transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 1.5rem;
+    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
   }
 
   #hero-stage.shrunk #hero-inner {
@@ -64,8 +64,8 @@ import ContactLinks from './ContactLinks.astro';
   }
 
   #hero-avatar {
-    width: min(clamp(5rem, 9vw, 10rem), 12svh);
-    height: min(clamp(5rem, 9vw, 10rem), 12svh);
+    width: min(clamp(5rem, 12vw, 14rem), 16svh);
+    height: min(clamp(5rem, 12vw, 14rem), 16svh);
     border-radius: 9999px;
     object-fit: cover;
     object-position: center 20%;
@@ -79,7 +79,7 @@ import ContactLinks from './ContactLinks.astro';
   }
 
   #hero-name {
-    font-size: min(clamp(1.5rem, 3.2vw, 3rem), 4svh);
+    font-size: min(clamp(1.5rem, 4.5vw, 4.5rem), 6svh);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.1;
@@ -87,7 +87,7 @@ import ContactLinks from './ContactLinks.astro';
   }
 
   #hero-handle {
-    font-size: min(clamp(1rem, 1.5vw, 1.4rem), 2.5svh);
+    font-size: min(clamp(1rem, 2.2vw, 2.2rem), 3.5svh);
     margin: 0;
   }
 
@@ -96,14 +96,14 @@ import ContactLinks from './ContactLinks.astro';
   }
 
   #hero-links :global(a) {
-    padding-top: min(clamp(0.25rem, 0.5vw, 0.5rem), 1svh);
-    padding-bottom: min(clamp(0.25rem, 0.5vw, 0.5rem), 1svh);
-    font-size: min(clamp(0.7rem, 1.2vw, 0.875rem), 2svh);
+    padding-top: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
+    padding-bottom: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
+    font-size: min(clamp(0.75rem, 1.5vw, 1.1rem), 2.5svh);
   }
 
   #hero-links :global(svg) {
-    width: min(clamp(1rem, 1.5vw, 1.25rem), 2.5svh);
-    height: min(clamp(1rem, 1.5vw, 1.25rem), 2.5svh);
+    width: min(clamp(1rem, 2vw, 1.5rem), 3svh);
+    height: min(clamp(1rem, 2vw, 1.5rem), 3svh);
     flex-shrink: 0;
   }
 

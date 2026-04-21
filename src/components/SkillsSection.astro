@@ -58,8 +58,8 @@ const categories: SkillCategory[] = [
 ];
 ---
 
-<section id="skills" class="max-w-2xl mx-auto px-6 py-16">
-  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Skills</h2>
+<section id="skills" class="site-container py-16">
+  <h2 class="skills-heading text-gray-900 dark:text-white mb-8">Skills</h2>
 
   <div class="skills-categories">
     {categories.map(category => (
@@ -89,14 +89,25 @@ const categories: SkillCategory[] = [
 </section>
 
 <style>
+  .skills-heading {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+  }
+
   .skills-categories {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
+  @media (min-width: 640px) {
+    .skills-categories {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   .category-label {
-    font-size: 0.6875rem;
+    font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -136,7 +147,7 @@ const categories: SkillCategory[] = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: clamp(0.875rem, 1vw, 1rem);
     font-weight: 500;
     color: var(--color-gray-700);
   }
@@ -148,8 +159,8 @@ const categories: SkillCategory[] = [
   }
 
   .skill-icon {
-    width: 15px;
-    height: 15px;
+    width: clamp(15px, 1.2vw, 18px);
+    height: clamp(15px, 1.2vw, 18px);
     flex-shrink: 0;
     color: var(--color-gray-400);
   }
@@ -197,7 +208,7 @@ const categories: SkillCategory[] = [
   }
 
   .skill-level-label {
-    font-size: 0.6875rem;
+    font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
     color: var(--color-gray-400);
     min-width: 5.5rem;
     text-align: right;
