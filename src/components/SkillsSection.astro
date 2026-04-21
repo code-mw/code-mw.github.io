@@ -1,68 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
-
-interface Skill {
-  name: string;
-  level: 1 | 2 | 3 | 4 | 5;
-  icon?: string;
-}
-
-interface SkillCategory {
-  name: string;
-  skills: Skill[];
-}
-
-const levelLabel = (level: number): string =>
-  (['', 'Familiar', 'Intermediate', 'Proficient', 'Advanced', 'Expert'] as const)[level] ?? '';
-
-const categories: SkillCategory[] = [
-  {
-    name: 'Languages',
-    skills: [
-      { name: 'PHP', level: 4, icon: 'simple-icons:php' },
-      { name: 'Python', level: 3, icon: 'simple-icons:python' },
-      { name: 'GoLang', level: 2, icon: 'simple-icons:go' },
-      { name: 'Bash', level: 3, icon: 'simple-icons:gnubash' },
-      { name: 'SQL', level: 4, icon: 'simple-icons:postgresql' },
-    ],
-  },
-  {
-    name: 'Cloud and Infrastructure',
-    skills: [
-      { name: 'AWS', level: 4, icon: 'simple-icons:amazonaws' },
-      { name: 'Cloudflare', level: 1, icon: 'simple-icons:cloudflare' },
-      { name: 'Terraform / Terragrunt', level: 5, icon: 'simple-icons:terraform' },
-      { name: 'Docker', level: 4, icon: 'simple-icons:docker' },
-      { name: 'Kubernetes', level: 2, icon: 'simple-icons:kubernetes' },
-      { name: 'Packer', level: 3, icon: 'simple-icons:packer' },
-    ],
-  },
-  {
-    name: 'Operations',
-    skills: [
-      { name: 'Linux (Debian, Fedora)', level: 4, icon: 'simple-icons:linux' },
-      { name: 'Puppet', level: 5, icon: 'simple-icons:puppet' },
-      { name: 'Ansible', level: 2, icon: 'simple-icons:ansible' },
-      { name: 'Jenkins', level: 5, icon: 'simple-icons:jenkins' },
-      { name: 'Zabbix', level: 5, icon: 'simple-icons:zazzle' },
-      { name: 'Vault (HashiCorp)', level: 4, icon: 'simple-icons:vault' },
-    ],
-  },
-  {
-    name: 'AI Tools',
-    skills: [
-      { name: 'Claude Code', level: 4, icon: 'simple-icons:anthropic' },
-      { name: 'GitHub Copilot', level: 4, icon: 'simple-icons:githubcopilot' },
-    ],
-  },
-];
+import { profile, levelLabel } from '../data/profile';
 ---
 
 <section id="skills" class="site-container py-16">
-  <h2 class="skills-heading text-gray-900 dark:text-white mb-8">Skills</h2>
+  <h2 class="section-heading text-gray-900 dark:text-white mb-8">Skills</h2>
 
   <div class="skills-categories">
-    {categories.map(category => (
+    {profile.skills.map(category => (
       <div class="skill-group">
         <p class="category-label">{category.name}</p>
         <ul class="skill-list">
@@ -89,11 +34,6 @@ const categories: SkillCategory[] = [
 </section>
 
 <style>
-  .skills-heading {
-    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-    font-weight: 700;
-  }
-
   .skills-categories {
     display: grid;
     grid-template-columns: 1fr;

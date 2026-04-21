@@ -17,6 +17,9 @@ import ContactLinks from './ContactLinks.astro';
       <p id="hero-handle" class="font-mono text-blue-600 dark:text-blue-400">
         {profile.handle}
       </p>
+      <p id="hero-tagline" class="text-gray-500 dark:text-gray-400">
+        {profile.tagline}
+      </p>
       <div id="hero-links">
         <ContactLinks email={profile.email} linkedin={profile.linkedin} />
       </div>
@@ -88,6 +91,11 @@ import ContactLinks from './ContactLinks.astro';
 
   #hero-handle {
     font-size: min(clamp(1rem, 2.2vw, 2.2rem), 3.5svh);
+    margin: 0;
+  }
+
+  #hero-tagline {
+    font-size: min(clamp(0.8125rem, 1.5vw, 1rem), 2svh);
     margin: 0;
   }
 

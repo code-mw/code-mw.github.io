@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
+  "devDependencies": {
     "@iconify-json/simple-icons": "^1.2.79",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.8",

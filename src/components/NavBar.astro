@@ -6,7 +6,7 @@ const tabs = [
 ---
 
 <nav id="site-nav" aria-label="Section navigation">
-  <div class="nav-inner">
+  <div class="site-container nav-inner">
     {tabs.map(tab => (
       <a href={`#${tab.id}`} class="nav-tab" data-tab={tab.id}>
         {tab.label}
@@ -44,9 +44,6 @@ const tabs = [
   }
 
   .nav-inner {
-    max-width: 56rem;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
     display: flex;
   }
 

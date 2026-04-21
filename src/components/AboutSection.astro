@@ -6,7 +6,7 @@ const { paragraphs } = Astro.props;
 ---
 
 <section id="about" class="site-container py-16">
-  <h2 class="about-heading text-gray-900 dark:text-white mb-4">About</h2>
+  <h2 class="section-heading text-gray-900 dark:text-white mb-4">About</h2>
   {paragraphs.map((paragraph) => (
     <p class="about-body text-gray-600 dark:text-gray-400 leading-relaxed mb-6 last:mb-0">
       {paragraph}
@@ -15,11 +15,6 @@ const { paragraphs } = Astro.props;
 </section>
 
 <style>
-  .about-heading {
-    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-    font-weight: 700;
-  }
-
   .about-body {
     font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
     max-width: 65ch;
