@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
+import NavBar from '../components/NavBar.astro';
 import AboutSection from '../components/AboutSection.astro';
 import { profile } from '../data/profile';
 ---
 
 <Layout>
   <HeroSection />
+  <NavBar />
   <AboutSection paragraphs={profile.about} />
 </Layout>

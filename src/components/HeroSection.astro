@@ -124,16 +124,21 @@ import ContactLinks from './ContactLinks.astro';
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const stage = document.getElementById('hero-stage');
+    const nav = document.getElementById('site-nav');
     const content = document.getElementById('page-content');
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
       stage?.classList.add('shrunk');
+      nav?.classList.add('visible');
       content?.classList.add('visible');
     } else {
       setTimeout(() => {
         stage?.classList.add('shrunk');
-        setTimeout(() => content?.classList.add('visible'), 750);
+        setTimeout(() => {
+          nav?.classList.add('visible');
+          content?.classList.add('visible');
+        }, 750);
       }, 800);
     }
   });
