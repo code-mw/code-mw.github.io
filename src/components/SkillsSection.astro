@@ -1,7 +1,10 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Skill {
   name: string;
   level: 1 | 2 | 3 | 4 | 5;
+  icon?: string;
 }
 
 interface SkillCategory {
@@ -16,40 +19,40 @@ const categories: SkillCategory[] = [
   {
     name: 'Languages',
     skills: [
-      { name: 'PHP', level: 4 },
-      { name: 'Python', level: 3 },
-      { name: 'GoLang', level: 2 },
-      { name: 'Bash', level: 3 },
-      { name: 'SQL', level: 4 },
+      { name: 'PHP', level: 4, icon: 'simple-icons:php' },
+      { name: 'Python', level: 3, icon: 'simple-icons:python' },
+      { name: 'GoLang', level: 2, icon: 'simple-icons:go' },
+      { name: 'Bash', level: 3, icon: 'simple-icons:gnubash' },
+      { name: 'SQL', level: 4, icon: 'simple-icons:postgresql' },
     ],
   },
   {
     name: 'Cloud and Infrastructure',
     skills: [
-      { name: 'AWS', level: 4 },
-      { name: 'Cloudflare', level: 1 },
-      { name: 'Terraform / Terragrunt', level: 5 },
-      { name: 'Docker', level: 4 },
-      { name: 'Kubernetes', level: 2 },
-      { name: 'Packer', level: 3 },
+      { name: 'AWS', level: 4, icon: 'simple-icons:amazonaws' },
+      { name: 'Cloudflare', level: 1, icon: 'simple-icons:cloudflare' },
+      { name: 'Terraform / Terragrunt', level: 5, icon: 'simple-icons:terraform' },
+      { name: 'Docker', level: 4, icon: 'simple-icons:docker' },
+      { name: 'Kubernetes', level: 2, icon: 'simple-icons:kubernetes' },
+      { name: 'Packer', level: 3, icon: 'simple-icons:packer' },
     ],
   },
   {
     name: 'Operations',
     skills: [
-      { name: 'Linux (Debian, Fedora)', level: 4 },
-      { name: 'Puppet', level: 5 },
-      { name: 'Ansible', level: 2 },
-      { name: 'Jenkins', level: 5 },
-      { name: 'Zabbix', level: 5 },
-      { name: 'Vault (HashiCorp)', level: 4 },
+      { name: 'Linux (Debian, Fedora)', level: 4, icon: 'simple-icons:linux' },
+      { name: 'Puppet', level: 5, icon: 'simple-icons:puppet' },
+      { name: 'Ansible', level: 2, icon: 'simple-icons:ansible' },
+      { name: 'Jenkins', level: 5, icon: 'simple-icons:jenkins' },
+      { name: 'Zabbix', level: 5, icon: 'simple-icons:zazzle' },
+      { name: 'Vault (HashiCorp)', level: 4, icon: 'simple-icons:vault' },
     ],
   },
   {
     name: 'AI Tools',
     skills: [
-      { name: 'Claude Code', level: 4 },
-      { name: 'GitHub Copilot', level: 4 },
+      { name: 'Claude Code', level: 4, icon: 'simple-icons:anthropic' },
+      { name: 'GitHub Copilot', level: 4, icon: 'simple-icons:githubcopilot' },
     ],
   },
 ];
@@ -65,7 +68,10 @@ const categories: SkillCategory[] = [
         <ul class="skill-list">
           {category.skills.map(skill => (
             <li class="skill-row">
-              <span class="skill-name">{skill.name}</span>
+              <span class="skill-name">
+                {skill.icon && <Icon name={skill.icon} class="skill-icon" />}
+                {skill.name}
+              </span>
               <div class="skill-meter">
                 <div class="skill-dots" aria-label={`${skill.level} of 5`}>
                   {[1, 2, 3, 4, 5].map(i => (
@@ -127,6 +133,9 @@ const categories: SkillCategory[] = [
   }
 
   .skill-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-gray-700);
@@ -135,6 +144,19 @@ const categories: SkillCategory[] = [
   @media (prefers-color-scheme: dark) {
     .skill-name {
       color: var(--color-gray-300);
+    }
+  }
+
+  .skill-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--color-gray-400);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-icon {
+      color: var(--color-gray-500);
     }
   }
 
