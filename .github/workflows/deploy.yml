@@ -25,6 +25,13 @@ jobs:
           cache: npm
       - uses: actions/configure-pages@v5
       - run: npm ci
+      - name: Generate CV PDF
+        run: |
+          npm run dev &
+          DEV_PID=$!
+          until curl -sf http://localhost:4321/cv > /dev/null 2>&1; do sleep 1; done
+          npm run cv:pdf
+          kill $DEV_PID 2>/dev/null || true
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

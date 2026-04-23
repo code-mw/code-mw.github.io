@@ -20,6 +20,7 @@ export interface Profile {
   metaDescription: string;
   about: string[];
   skills: SkillCategory[];
+  cvFilename: string;
 }
 
 export const levelLabel = (level: number): string =>
@@ -32,9 +33,10 @@ export const profile: Profile = {
   email: 'hire@code-mw.pl',
   linkedin: 'https://www.linkedin.com/in/winogrodzkimarcin/',
   avatar: '/avatar.jpg',
-  tagline: 'Senior DevOps / SRE Engineer',
+  tagline: 'DevOps/Software Engineer',
   metaDescription:
     'Software and DevOps Engineer with 5+ years of commercial experience at large-scale tech companies. Specialises in building and operating reliable, high-performance infrastructure.',
+  cvFilename: 'marcin-winogrodzki-cv.pdf',
   about: [
     'Software and DevOps Engineer with 5+ years of commercial experience at large-scale tech companies. Specialises in building and operating reliable, high-performance infrastructure - from application development through to production, with a strong focus on security and operational excellence.',
     'Proficient in PHP, Python, and Go for backend development, with hands-on experience across the full infrastructure stack: Terraform, Terragrunt, Puppet, Jenkins, Zabbix, Docker, and Kubernetes. Deep working knowledge of AWS and Linux (Debian, Fedora). Embraces AI-assisted development with Claude and GitHub Copilot to drive engineering efficiency.',
@@ -56,7 +58,8 @@ export const profile: Profile = {
       skills: [
         { name: 'AWS', level: 4, icon: 'simple-icons:amazonaws' },
         { name: 'Cloudflare', level: 1, icon: 'simple-icons:cloudflare' },
-        { name: 'Terraform / Terragrunt', level: 5, icon: 'simple-icons:terraform' },
+        { name: 'Terraform', level: 5, icon: 'simple-icons:terraform' },
+        { name: 'Terragrunt', level: 5, icon: 'simple-icons:terraform' },
         { name: 'Docker', level: 4, icon: 'simple-icons:docker' },
         { name: 'Kubernetes', level: 2, icon: 'simple-icons:kubernetes' },
         { name: 'Packer', level: 3, icon: 'simple-icons:packer' },
@@ -65,12 +68,13 @@ export const profile: Profile = {
     {
       name: 'Operations',
       skills: [
-        { name: 'Linux (Debian, Fedora)', level: 4, icon: 'simple-icons:linux' },
+        { name: 'Linux (RHEL)', level: 3, icon: 'simple-icons:linux' },
+        { name: 'Linux (Debian)', level: 3, icon: 'simple-icons:linux' },
         { name: 'Puppet', level: 5, icon: 'simple-icons:puppet' },
-        { name: 'Ansible', level: 2, icon: 'simple-icons:ansible' },
         { name: 'Jenkins', level: 5, icon: 'simple-icons:jenkins' },
+        { name: 'Ansible', level: 2, icon: 'simple-icons:ansible' },
         { name: 'Zabbix', level: 5, icon: 'simple-icons:zazzle' },
-        { name: 'Vault (HashiCorp)', level: 4, icon: 'simple-icons:vault' },
+        { name: 'Vault', level: 3, icon: 'simple-icons:vault' },
       ],
     },
     {
