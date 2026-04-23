@@ -121,6 +121,37 @@ import ContactLinks from './ContactLinks.astro';
     }
   }
 
+  @media (max-height: 500px) {
+    #hero-inner {
+      gap: clamp(1.25rem, 4vw, 3.5rem);
+    }
+    #hero-avatar {
+      width: clamp(5rem, 12vw, 14rem);
+      height: clamp(5rem, 12vw, 14rem);
+    }
+    #hero-text {
+      gap: clamp(0.3rem, 0.8vh, 0.6rem);
+    }
+    #hero-name {
+      font-size: clamp(1.5rem, 4.5vw, 4.5rem);
+    }
+    #hero-handle {
+      font-size: clamp(1rem, 2.2vw, 2.2rem);
+    }
+    #hero-tagline {
+      font-size: clamp(0.8125rem, 1.5vw, 1rem);
+    }
+    #hero-links :global(a) {
+      padding-top: clamp(0.25rem, 0.6vw, 0.6rem);
+      padding-bottom: clamp(0.25rem, 0.6vw, 0.6rem);
+      font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+    }
+    #hero-links :global(svg) {
+      width: clamp(1rem, 2vw, 1.5rem);
+      height: clamp(1rem, 2vw, 1.5rem);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #hero-stage,
     #hero-inner {
