@@ -129,17 +129,18 @@ import ContactLinks from './ContactLinks.astro';
       width: clamp(4rem, 18vmin, 8rem);
       height: clamp(4rem, 18vmin, 8rem);
     }
-    #hero-text {
-      gap: clamp(0.2rem, 1vmin, 0.4rem);
-    }
-    #hero-name {
-      font-size: clamp(1.25rem, 6vmin, 2.5rem);
-    }
-    #hero-handle {
-      font-size: clamp(0.875rem, 3.5vmin, 1.5rem);
-    }
+    #hero-name,
+    #hero-handle,
     #hero-tagline {
-      font-size: clamp(0.75rem, 3vmin, 1rem);
+      display: none;
+    }
+    #hero-text {
+      gap: 0;
+      justify-content: center;
+    }
+    #hero-links :global(div) {
+      flex-direction: row;
+      gap: clamp(0.1rem, 1vmin, 0.3rem);
     }
     #hero-links :global(a) {
       padding-top: clamp(0.2rem, 1.5vmin, 0.4rem);
