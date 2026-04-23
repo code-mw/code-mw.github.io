@@ -35,22 +35,22 @@ export const profile: Profile = {
   avatar: '/avatar.jpg',
   tagline: 'DevOps/Software Engineer',
   metaDescription:
-    'Software and DevOps Engineer with 5+ years of commercial experience at large-scale tech companies. Specialises in building and operating reliable, high-performance infrastructure.',
+    'Software and DevOps Engineer with 5+ years of experience designing high-availability systems and reliable delivery pipelines at large-scale organisations. Focused on operational excellence, security, and sustainable infrastructure.',
   cvFilename: 'marcin-winogrodzki-cv.pdf',
   about: [
-    'Software and DevOps Engineer with 5+ years of commercial experience at large-scale tech companies. Specialises in building and operating reliable, high-performance infrastructure - from application development through to production, with a strong focus on security and operational excellence.',
-    'Proficient in PHP, Python, and Go for backend development, with hands-on experience across the full infrastructure stack: Terraform, Terragrunt, Puppet, Jenkins, Zabbix, Docker, and Kubernetes. Deep working knowledge of AWS and Linux (Debian, Fedora). Embraces AI-assisted development with Claude and GitHub Copilot to drive engineering efficiency.',
-    'Proven track record of leading infrastructure improvements, reducing operational toil, and delivering continuous improvement in complex, multi-team environments.',
+    'Software and DevOps Engineer with 5+ years of commercial experience at large-scale organisations. Works across both sides of the stack: building backend web applications from the ground up, and designing the high-availability infrastructure that runs them in production.',
+    'Deeply familiar with the full delivery lifecycle - from application architecture and API design through to CI/CD pipelines, secrets management, and monitoring strategies that surface meaningful signal over noise.',
+    'Proven track record of reducing operational toil, improving system reliability, and bridging the gap between development and operations in complex, multi-team environments.',
   ],
   skills: [
     {
       name: 'Languages',
       skills: [
-        { name: 'PHP', level: 4, icon: 'simple-icons:php' },
-        { name: 'Python', level: 3, icon: 'simple-icons:python' },
+        { name: 'PHP (Symfony)', level: 4, icon: 'simple-icons:php' },
+        { name: 'Python (Flask)', level: 3, icon: 'simple-icons:python' },
         { name: 'GoLang', level: 2, icon: 'simple-icons:go' },
         { name: 'Bash', level: 3, icon: 'simple-icons:gnubash' },
-        { name: 'SQL', level: 4, icon: 'simple-icons:postgresql' },
+        { name: 'SQL', level: 3, icon: 'simple-icons:postgresql' },
       ],
     },
     {
