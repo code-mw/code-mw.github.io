@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { profile } from "../data/profile";
+import avatarImg from "../assets/avatar.jpg";
 
 interface Props {
   title?: string;
@@ -35,7 +36,7 @@ const {
       Astro.site && (
         <meta
           property="og:image"
-          content={new URL(profile.avatar, Astro.site).href}
+          content={new URL(avatarImg.src, Astro.site).href}
         />
       )
     }

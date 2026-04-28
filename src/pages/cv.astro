@@ -1,5 +1,6 @@
 ---
 import { profile, levelLabel } from "../data/profile";
+import avatarImg from "../assets/avatar.jpg";
 
 const linkedinHandle = profile.linkedin
   .replace(/^https?:\/\/www\.linkedin\.com\/in\//, "")
@@ -53,7 +54,7 @@ const linkedinHandle = profile.linkedin
             <p class="cv-role">{profile.tagline}</p>
           </div>
           <div class="cv-contact-block">
-            <img src={profile.avatar} alt="" class="cv-avatar" />
+            <img src={avatarImg.src} alt="" class="cv-avatar" />
             <div class="cv-links">
               <a href={`mailto:${profile.email}`} class="cv-link"
                 >{profile.email}</a
