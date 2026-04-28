@@ -15,7 +15,6 @@ export interface Profile {
   handle: string;
   email: string;
   linkedin: string;
-  avatar: string;
   tagline: string;
   metaDescription: string;
   about: string[];
@@ -41,7 +40,6 @@ export const profile: Profile = {
   handle: "code.mw",
   email: "hire@code-mw.pl",
   linkedin: "https://www.linkedin.com/in/winogrodzkimarcin/",
-  avatar: "/avatar.jpg",
   tagline: "DevOps/Software Engineer",
   metaDescription:
     "Software and DevOps Engineer with 5+ years of experience designing high-availability systems and reliable delivery pipelines at large-scale organisations. Focused on operational excellence, security, and sustainable infrastructure.",

@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { profile } from "../data/profile";
 import ContactLinks from "./ContactLinks.astro";
+import avatarSrc from "../assets/avatar.jpg";
 ---
 
 <script is:inline>
@@ -16,19 +18,22 @@ import ContactLinks from "./ContactLinks.astro";
 
 <div id="hero-stage" class="bg-white dark:bg-slate-950">
   <div id="hero-inner">
-    <img
-      src={profile.avatar}
+    <Image
+      src={avatarSrc}
       alt={`${profile.firstName} ${profile.lastName}`}
       id="hero-avatar"
+      loading="eager"
     />
     <div id="hero-text">
-      <h1 id="hero-name" class="text-gray-900 dark:text-white">
-        {profile.firstName}
-        {profile.lastName}
-      </h1>
-      <p id="hero-handle" class="font-mono text-blue-600 dark:text-blue-400">
-        {profile.handle}
-      </p>
+      <div id="hero-identity">
+        <h1 id="hero-name" class="text-gray-900 dark:text-white">
+          {profile.firstName}
+          {profile.lastName}
+        </h1>
+        <p id="hero-handle" class="font-mono text-blue-600 dark:text-blue-400">
+          {profile.handle}
+        </p>
+      </div>
       <p id="hero-tagline" class="text-gray-500 dark:text-gray-400">
         {profile.tagline}
       </p>
@@ -50,6 +55,7 @@ import ContactLinks from "./ContactLinks.astro";
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      padding: clamp(1rem, 4svh, 2.5rem) 0;
       transition:
         height 0.85s cubic-bezier(0.4, 0, 0.2, 1),
         border-color 0.3s ease 0.8s;
@@ -92,7 +98,14 @@ import ContactLinks from "./ContactLinks.astro";
     #hero-text {
       display: flex;
       flex-direction: column;
-      gap: min(clamp(0.3rem, 0.8vh, 0.6rem), 1.2svh);
+      gap: min(clamp(0.05rem, 0.2vh, 0.15rem), 0.3svh);
+      text-align: left;
+    }
+
+    #hero-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     #hero-name {
