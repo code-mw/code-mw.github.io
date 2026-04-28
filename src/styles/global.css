@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 section[id] {
-  scroll-margin-top: calc(25svh + 2.5rem);
+  scroll-margin-top: calc(20svh + 2.5rem);
 }
 
 .site-container {

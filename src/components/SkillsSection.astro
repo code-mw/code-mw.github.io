@@ -1,172 +1,150 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { profile, levelLabel } from '../data/profile';
+import { Icon } from "astro-icon/components";
+import { profile, levelLabel } from "../data/profile";
 ---
 
-<section id="skills" class="site-container py-16">
-  <h2 class="section-heading text-gray-900 dark:text-white mb-8">Skills</h2>
+<section
+  id="skills"
+  class="site-container pt-8 pb-16"
+  style="scroll-margin-top: calc(20svh + 3rem)"
+>
+  <h2 class="section-heading mb-8 text-gray-900 dark:text-white">Skills</h2>
 
   <div class="skills-categories">
-    {profile.skills.map(category => (
-      <div class="skill-group">
-        <p class="category-label">{category.name}</p>
-        <ul class="skill-list">
-          {category.skills.map(skill => (
-            <li class="skill-row">
-              <span class="skill-name">
-                {skill.icon && <Icon name={skill.icon} class="skill-icon" />}
-                {skill.name}
-              </span>
-              <div class="skill-meter">
-                <div class="skill-dots" aria-label={`${skill.level} of 5`}>
-                  {[1, 2, 3, 4, 5].map(i => (
-                    <span class={`dot ${i <= skill.level ? 'dot--filled' : 'dot--empty'}`} />
-                  ))}
+    {
+      profile.skills.map((category) => (
+        <div class="skill-group">
+          <p class="category-label">{category.name}</p>
+          <ul class="skill-list dark:border-slate-800">
+            {category.skills.map((skill) => (
+              <li class="skill-row dark:border-slate-900">
+                <span class="skill-name dark:text-gray-300">
+                  {skill.icon && (
+                    <Icon
+                      name={skill.icon}
+                      class="skill-icon dark:text-gray-500"
+                    />
+                  )}
+                  {skill.name}
+                </span>
+                <div class="skill-meter">
+                  <div class="skill-dots" aria-label={`${skill.level} of 5`}>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <span
+                        class={`dot ${i <= skill.level ? "dot--filled dark:bg-blue-400" : "dot--empty dark:bg-slate-700"}`}
+                      />
+                    ))}
+                  </div>
+                  <span class="skill-level-label dark:text-gray-500">
+                    {levelLabel(skill.level)}
+                  </span>
                 </div>
-                <span class="skill-level-label">{levelLabel(skill.level)}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </div>
 </section>
 
 <style>
-  .skills-categories {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 640px) {
+  @layer components {
     .skills-categories {
-      grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
-  }
 
-  .category-label {
-    font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-gray-400);
-    margin-bottom: 0.5rem;
-  }
+    @media (min-width: 640px) {
+      .skills-categories {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
-  .skill-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--color-gray-200);
-  }
+    .category-label {
+      font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-gray-400);
+      margin-bottom: 0.5rem;
+    }
 
-  @media (prefers-color-scheme: dark) {
     .skill-list {
-      border-top-color: var(--color-slate-800);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--color-gray-200);
     }
-  }
 
-  .skill-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.625rem 0;
-    border-bottom: 1px solid var(--color-gray-100);
-    transition: background-color 0.15s ease;
-  }
-
-  @media (prefers-color-scheme: dark) {
     .skill-row {
-      border-bottom-color: var(--color-slate-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--color-gray-100);
+      transition: background-color 0.15s ease;
     }
-  }
 
-  .skill-name {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: clamp(0.875rem, 1vw, 1rem);
-    font-weight: 500;
-    color: var(--color-gray-700);
-  }
-
-  @media (prefers-color-scheme: dark) {
     .skill-name {
-      color: var(--color-gray-300);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: clamp(0.875rem, 1vw, 1rem);
+      font-weight: 500;
+      color: var(--color-gray-700);
     }
-  }
 
-  .skill-icon {
-    width: clamp(15px, 1.2vw, 18px);
-    height: clamp(15px, 1.2vw, 18px);
-    flex-shrink: 0;
-    color: var(--color-gray-400);
-  }
-
-  @media (prefers-color-scheme: dark) {
     .skill-icon {
-      color: var(--color-gray-500);
+      width: clamp(15px, 1.2vw, 18px);
+      height: clamp(15px, 1.2vw, 18px);
+      flex-shrink: 0;
+      color: var(--color-gray-400);
     }
-  }
 
-  .skill-meter {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .skill-dots {
-    display: flex;
-    gap: 3px;
-  }
-
-  .dot {
-    display: block;
-    width: 22px;
-    height: 6px;
-    border-radius: 2px;
-  }
-
-  .dot--filled {
-    background-color: var(--color-blue-600);
-  }
-
-  .dot--empty {
-    background-color: var(--color-gray-200);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dot--filled {
-      background-color: var(--color-blue-400);
+    .skill-meter {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
     }
-    .dot--empty {
-      background-color: var(--color-slate-700);
-    }
-  }
 
-  .skill-level-label {
-    font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
-    color: var(--color-gray-400);
-    min-width: 5.5rem;
-    text-align: right;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .skill-level-label {
-      color: var(--color-gray-500);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .skill-level-label {
-      display: none;
+    .skill-dots {
+      display: flex;
+      gap: 3px;
     }
 
     .dot {
-      width: 18px;
+      display: block;
+      width: 22px;
+      height: 6px;
+      border-radius: 2px;
+    }
+
+    .dot--filled {
+      background-color: var(--color-blue-600);
+    }
+
+    .dot--empty {
+      background-color: var(--color-gray-200);
+    }
+
+    .skill-level-label {
+      font-size: clamp(0.6875rem, 0.8vw, 0.75rem);
+      color: var(--color-gray-400);
+      min-width: 5.5rem;
+      text-align: right;
+    }
+
+    @media (max-width: 480px) {
+      .skill-level-label {
+        display: none;
+      }
+
+      .dot {
+        width: 18px;
+      }
     }
   }
 </style>

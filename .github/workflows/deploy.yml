@@ -30,6 +30,8 @@ jobs:
           path: ~/.cache/puppeteer
           key: puppeteer-${{ hashFiles('package-lock.json') }}
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate CV PDF
         run: |
           npm run dev &
@@ -38,6 +40,8 @@ jobs:
           npm run cv:pdf
           kill $DEV_PID 2>/dev/null || true
       - run: npm run build
+        env:
+          PUBLIC_WORKER_URL: ${{ vars.WORKER_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

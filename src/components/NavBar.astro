@@ -1,116 +1,110 @@
 ---
 const tabs = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
 ];
 ---
 
-<nav id="site-nav" aria-label="Section navigation">
+<nav
+  id="site-nav"
+  class="dark:border-slate-800 dark:bg-[rgba(2,6,23,0.88)] dark:[box-shadow:0_2px_16px_rgba(0,0,0,0.4)]"
+  aria-label="Section navigation"
+>
   <div class="site-container nav-inner">
-    {tabs.map(tab => (
-      <a href={`#${tab.id}`} class="nav-tab" data-tab={tab.id}>
-        {tab.label}
-      </a>
-    ))}
+    {
+      tabs.map((tab) => (
+        <a
+          href={`#${tab.id}`}
+          class="nav-tab dark:hover:text-white dark:[&.active]:border-b-blue-400 dark:[&.active]:text-blue-400"
+          data-tab={tab.id}
+        >
+          {tab.label}
+        </a>
+      ))
+    }
   </div>
 </nav>
 
 <style>
-  #site-nav {
-    position: sticky;
-    top: 25svh;
-    z-index: 9;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--color-gray-100);
-    border-bottom: 1px solid var(--color-gray-200);
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-
-  #site-nav.visible {
-    opacity: 1;
-  }
-
-  @media (prefers-color-scheme: dark) {
+  @layer components {
     #site-nav {
-      background: rgba(2, 6, 23, 0.88);
-      border-top-color: var(--color-slate-800);
-      border-bottom-color: var(--color-slate-800);
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 20svh;
+      z-index: 9;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--color-gray-100);
+      border-bottom: 1px solid var(--color-gray-200);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-  }
 
-  .nav-inner {
-    display: flex;
-  }
+    #site-nav.visible {
+      opacity: 1;
+    }
 
-  .nav-tab {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-gray-500);
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.2s, border-color 0.2s;
-  }
+    .nav-inner {
+      display: flex;
+    }
 
-  .nav-tab:hover {
-    color: var(--color-gray-900);
-  }
+    .nav-tab {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-gray-500);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition:
+        color 0.2s,
+        border-color 0.2s;
+    }
 
-  .nav-tab.active {
-    color: var(--color-blue-600);
-    border-bottom-color: var(--color-blue-600);
-  }
-
-  @media (prefers-color-scheme: dark) {
     .nav-tab:hover {
-      color: white;
+      color: var(--color-gray-900);
     }
 
     .nav-tab.active {
-      color: var(--color-blue-400);
-      border-bottom-color: var(--color-blue-400);
+      color: var(--color-blue-600);
+      border-bottom-color: var(--color-blue-600);
     }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    #site-nav {
-      transition: none;
+    @media (prefers-reduced-motion: reduce) {
+      #site-nav {
+        transition: none;
+      }
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll<HTMLAnchorElement>('.nav-tab');
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll<HTMLAnchorElement>(".nav-tab");
 
     const activate = (id: string) => {
-      tabs.forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.tab === id);
+      tabs.forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.tab === id);
       });
     };
 
-    activate('about');
+    activate("about");
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => activate(tab.dataset.tab ?? ''));
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => activate(tab.dataset.tab ?? ""));
     });
 
-    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const sections = document.querySelectorAll<HTMLElement>("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) activate(entry.target.id);
         });
       },
-      { rootMargin: '-40% 0px -55% 0px' }
+      { rootMargin: "-40% 0px -55% 0px" },
     );
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
   });
 </script>

@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import { profile } from '../data/profile';
+import "../styles/global.css";
+import { profile } from "../data/profile";
 
 interface Props {
   title?: string;
@@ -31,14 +31,21 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url} />
-    {Astro.site && (
-      <meta property="og:image" content={new URL(profile.avatar, Astro.site).href} />
-    )}
+    {
+      Astro.site && (
+        <meta
+          property="og:image"
+          content={new URL(profile.avatar, Astro.site).href}
+        />
+      )
+    }
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>
-  <body class="bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 antialiased min-h-screen">
+  <body
+    class="min-h-screen bg-white text-gray-900 antialiased dark:bg-slate-950 dark:text-gray-100"
+  >
     <slot />
   </body>
 </html>

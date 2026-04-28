@@ -1,7 +1,18 @@
 ---
-import { profile } from '../data/profile';
-import ContactLinks from './ContactLinks.astro';
+import { profile } from "../data/profile";
+import ContactLinks from "./ContactLinks.astro";
 ---
+
+<script is:inline>
+  (function () {
+    if (
+      sessionStorage.getItem("hero-animated") ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      document.documentElement.classList.add("hero-instant", "hero-skip");
+    }
+  })();
+</script>
 
 <div id="hero-stage" class="bg-white dark:bg-slate-950">
   <div id="hero-inner">
@@ -12,7 +23,8 @@ import ContactLinks from './ContactLinks.astro';
     />
     <div id="hero-text">
       <h1 id="hero-name" class="text-gray-900 dark:text-white">
-        {profile.firstName} {profile.lastName}
+        {profile.firstName}
+        {profile.lastName}
       </h1>
       <p id="hero-handle" class="font-mono text-blue-600 dark:text-blue-400">
         {profile.handle}
@@ -28,156 +40,204 @@ import ContactLinks from './ContactLinks.astro';
 </div>
 
 <style>
-  #hero-stage {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: height 0.85s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.3s ease 0.8s;
-    border-bottom: 1px solid transparent;
-  }
-
-  #hero-stage.shrunk {
-    height: 25svh;
-    border-bottom-color: var(--color-gray-200);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    #hero-stage.shrunk {
-      border-bottom-color: var(--color-slate-800);
-    }
-  }
-
-  #hero-inner {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: min(clamp(1.25rem, 4vw, 3.5rem), 4svh);
-    transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
-  }
-
-  #hero-stage.shrunk #hero-inner {
-    transform: scale(1.2);
-  }
-
-  #hero-avatar {
-    width: min(clamp(5rem, 12vw, 14rem), 16svh);
-    height: min(clamp(5rem, 12vw, 14rem), 16svh);
-    border-radius: 9999px;
-    object-fit: cover;
-    object-position: center 20%;
-    flex-shrink: 0;
-  }
-
-  #hero-text {
-    display: flex;
-    flex-direction: column;
-    gap: min(clamp(0.3rem, 0.8vh, 0.6rem), 1.2svh);
-  }
-
-  #hero-name {
-    font-size: min(clamp(1.5rem, 4.5vw, 4.5rem), 6svh);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    margin: 0;
-  }
-
-  #hero-handle {
-    font-size: min(clamp(1rem, 2.2vw, 2.2rem), 3.5svh);
-    margin: 0;
-  }
-
-  #hero-tagline {
-    font-size: min(clamp(0.8125rem, 1.5vw, 1rem), 2svh);
-    margin: 0;
-  }
-
-  #hero-links :global(div) {
-    justify-content: flex-start;
-  }
-
-  #hero-links :global(a) {
-    padding-top: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
-    padding-bottom: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
-    font-size: min(clamp(0.75rem, 1.5vw, 1.1rem), 2.5svh);
-  }
-
-  #hero-links :global(svg) {
-    width: min(clamp(1rem, 2vw, 1.5rem), 3svh);
-    height: min(clamp(1rem, 2vw, 1.5rem), 3svh);
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 480px) {
-    #hero-stage.shrunk #hero-inner {
-      transform: scale(1.0);
-    }
-  }
-
-  @media (max-height: 500px) {
-    #hero-inner {
-      gap: clamp(0.75rem, 3vmin, 2rem);
-    }
-    #hero-avatar {
-      width: clamp(4rem, 18vmin, 8rem);
-      height: clamp(4rem, 18vmin, 8rem);
-    }
-    #hero-name,
-    #hero-handle,
-    #hero-tagline {
-      display: none;
-    }
-    #hero-text {
-      gap: 0;
+  @layer components {
+    #hero-stage {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 100svh;
+      display: flex;
+      align-items: center;
       justify-content: center;
+      overflow: hidden;
+      transition:
+        height 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.3s ease 0.8s;
+      border-bottom: 1px solid transparent;
     }
-    #hero-links :global(div) {
-      flex-direction: row;
-      gap: clamp(0.1rem, 1vmin, 0.3rem);
-    }
-    #hero-links :global(a) {
-      padding-top: clamp(0.2rem, 1.5vmin, 0.4rem);
-      padding-bottom: clamp(0.2rem, 1.5vmin, 0.4rem);
-      font-size: clamp(0.75rem, 3vmin, 1rem);
-    }
-    #hero-links :global(svg) {
-      width: clamp(0.875rem, 3.5vmin, 1.25rem);
-      height: clamp(0.875rem, 3.5vmin, 1.25rem);
-    }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    #hero-stage,
+    #hero-stage.shrunk {
+      height: 20svh;
+      border-bottom-color: var(--color-gray-200);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #hero-stage.shrunk {
+        border-bottom-color: var(--color-slate-800);
+      }
+    }
+
     #hero-inner {
-      transition: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: min(clamp(1.25rem, 4vw, 3.5rem), 4svh);
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    #hero-stage.shrunk #hero-inner {
+      transform: scale(1.2);
+    }
+
+    #hero-avatar {
+      width: min(clamp(5rem, 12vw, 14rem), 16svh);
+      height: min(clamp(5rem, 12vw, 14rem), 16svh);
+      border-radius: 9999px;
+      object-fit: cover;
+      object-position: center 20%;
+      flex-shrink: 0;
+    }
+
+    #hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: min(clamp(0.3rem, 0.8vh, 0.6rem), 1.2svh);
+    }
+
+    #hero-name {
+      font-size: min(clamp(1.5rem, 4.5vw, 4.5rem), 6svh);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    #hero-handle {
+      font-size: min(clamp(1rem, 2.2vw, 2.2rem), 3.5svh);
+      margin: 0;
+    }
+
+    #hero-tagline {
+      font-size: min(clamp(0.8125rem, 1.5vw, 1rem), 2svh);
+      margin: 0;
+    }
+
+    #hero-links :global(div) {
+      justify-content: flex-start;
+    }
+
+    #hero-links :global(a) {
+      padding-top: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
+      padding-bottom: min(clamp(0.25rem, 0.6vw, 0.6rem), 1.2svh);
+      font-size: min(clamp(0.75rem, 1.5vw, 1.1rem), 2.5svh);
+    }
+
+    #hero-links :global(svg) {
+      width: min(clamp(1rem, 2vw, 1.5rem), 3svh);
+      height: min(clamp(1rem, 2vw, 1.5rem), 3svh);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      #hero-stage.shrunk #hero-inner {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-height: 500px) {
+      #hero-inner {
+        gap: clamp(0.75rem, 3vmin, 2rem);
+      }
+      #hero-avatar {
+        width: clamp(4rem, 18vmin, 8rem);
+        height: clamp(4rem, 18vmin, 8rem);
+      }
+      #hero-name,
+      #hero-handle,
+      #hero-tagline {
+        display: none;
+      }
+      #hero-text {
+        gap: 0;
+        justify-content: center;
+      }
+      #hero-links :global(div) {
+        flex-direction: row;
+        gap: clamp(0.1rem, 1vmin, 0.3rem);
+      }
+      #hero-links :global(a) {
+        padding-top: clamp(0.2rem, 1.5vmin, 0.4rem);
+        padding-bottom: clamp(0.2rem, 1.5vmin, 0.4rem);
+        font-size: clamp(0.75rem, 3vmin, 1rem);
+      }
+      #hero-links :global(svg) {
+        width: clamp(0.875rem, 3.5vmin, 1.25rem);
+        height: clamp(0.875rem, 3.5vmin, 1.25rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #hero-stage,
+      #hero-inner {
+        transition: none;
+      }
+    }
+
+    :global(.hero-instant) #hero-stage,
+    :global(.hero-instant) #hero-inner,
+    :global(.hero-instant) #site-nav,
+    :global(.hero-instant) #page-content {
+      transition: none !important;
+    }
+
+    :global(.hero-skip) #hero-stage {
+      height: 20svh;
+      border-bottom-color: var(--color-gray-200);
+    }
+
+    :global(.hero-skip) #hero-inner {
+      transform: scale(1.2);
+    }
+
+    :global(.hero-skip) #site-nav {
+      opacity: 1;
+    }
+
+    :global(.hero-skip) #page-content {
+      opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :global(.hero-skip) #hero-stage {
+        border-bottom-color: var(--color-slate-800);
+      }
     }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const stage = document.getElementById('hero-stage');
-    const nav = document.getElementById('site-nav');
-    const content = document.getElementById('page-content');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener("DOMContentLoaded", () => {
+    const stage = document.getElementById("hero-stage");
+    const nav = document.getElementById("site-nav");
+    const content = document.getElementById("page-content");
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-    if (prefersReduced) {
-      stage?.classList.add('shrunk');
-      nav?.classList.add('visible');
-      content?.classList.add('visible');
+    const skipAnimation =
+      prefersReduced || sessionStorage.getItem("hero-animated");
+
+    if (skipAnimation) {
+      document.documentElement.classList.add("hero-instant", "hero-skip");
+      stage?.classList.add("shrunk");
+      nav?.classList.add("visible");
+      content?.classList.add("visible");
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          document.documentElement.classList.remove(
+            "hero-instant",
+            "hero-skip",
+          );
+        }),
+      );
     } else {
+      sessionStorage.setItem("hero-animated", "1");
       setTimeout(() => {
-        stage?.classList.add('shrunk');
+        stage?.classList.add("shrunk");
         setTimeout(() => {
-          nav?.classList.add('visible');
-          content?.classList.add('visible');
+          nav?.classList.add("visible");
+          content?.classList.add("visible");
         }, 750);
       }, 800);
     }
