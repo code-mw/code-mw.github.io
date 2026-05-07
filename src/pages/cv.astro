@@ -48,11 +48,17 @@ import avatarImg from "../assets/avatar.jpg";
           <div class="cv-identity">
             <h1 class="cv-name">{profile.firstName} {profile.lastName}</h1>
             <p class="cv-role">{profile.tagline}</p>
-            <a href={profile.website} class="cv-link cv-website">{profile.websiteHandle}</a>
+            <a href={profile.website} class="cv-link cv-website"
+              >{profile.websiteHandle}</a
+            >
             <div class="cv-contacts">
               <span class="cv-contacts-label">Contacts</span>
-              <a href={`mailto:${profile.email}`} class="cv-link">{profile.email}</a>
-              <a href={profile.linkedin} class="cv-link">linkedin/{profile.linkedinHandle}</a>
+              <a href={`mailto:${profile.email}`} class="cv-link"
+                >{profile.email}</a
+              >
+              <a href={profile.linkedin} class="cv-link"
+                >linkedin/{profile.linkedinHandle}</a
+              >
             </div>
           </div>
           <div class="cv-contact-block">
@@ -73,31 +79,41 @@ import avatarImg from "../assets/avatar.jpg";
 
             <section class="cv-section">
               <h2 class="cv-section-label">Experience</h2>
-              {profile.experience.map((entry, i) => (
-                <div class="exp-entry">
-                  <div class="exp-company-row">
-                    {entry.current && <span class="exp-current-badge">Currently</span>}
-                    <span class="exp-company">{entry.company}</span>
-                    {(entry.employmentType || entry.totalDuration) && (
-                      <span class="exp-company-meta">
-                        {[entry.employmentType, entry.totalDuration].filter(Boolean).join(" · ")}
-                      </span>
-                    )}
-                  </div>
-                  {entry.roles.map((role, i) => (
-                    <div class={`exp-role${i > 0 ? " exp-role--subsequent" : ""}`}>
-                      <div class="exp-role-header">
-                        <span class="exp-role-title">{role.title}</span>
-                        <span class="exp-role-period">{role.period}</span>
-                      </div>
-                      <span class="exp-role-location">{role.location}</span>
-                      <ul class="exp-bullets">
-                        {role.bullets.map((b) => <li class="exp-bullet">{b}</li>)}
-                      </ul>
+              {
+                profile.experience.map((entry, i) => (
+                  <div class="exp-entry">
+                    <div class="exp-company-row">
+                      {entry.current && (
+                        <span class="exp-current-badge">Currently</span>
+                      )}
+                      <span class="exp-company">{entry.company}</span>
+                      {(entry.employmentType || entry.totalDuration) && (
+                        <span class="exp-company-meta">
+                          {[entry.employmentType, entry.totalDuration]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </span>
+                      )}
                     </div>
-                  ))}
-                </div>
-              ))}
+                    {entry.roles.map((role, i) => (
+                      <div
+                        class={`exp-role${i > 0 ? " exp-role--subsequent" : ""}`}
+                      >
+                        <div class="exp-role-header">
+                          <span class="exp-role-title">{role.title}</span>
+                          <span class="exp-role-period">{role.period}</span>
+                        </div>
+                        <span class="exp-role-location">{role.location}</span>
+                        <ul class="exp-bullets">
+                          {role.bullets.map((b) => (
+                            <li class="exp-bullet">{b}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ))
+              }
             </section>
           </main>
 
@@ -130,9 +146,10 @@ import avatarImg from "../assets/avatar.jpg";
         </div>
 
         <footer class="cv-legal">
-          I consent to the processing of my personal data for the purposes of the recruitment
-          process, in accordance with Article 6(1)(a) of Regulation (EU) 2016/679 of the
-          European Parliament and of the Council of 27 April 2016 (GDPR).
+          I consent to the processing of my personal data for the purposes of
+          the recruitment process, in accordance with Article 6(1)(a) of
+          Regulation (EU) 2016/679 of the European Parliament and of the Council
+          of 27 April 2016 (GDPR).
         </footer>
       </article>
     </div>
@@ -566,7 +583,6 @@ import avatarImg from "../assets/avatar.jpg";
     .pip--off {
       background: #e2e8f0;
     }
-
   }
 </style>
 

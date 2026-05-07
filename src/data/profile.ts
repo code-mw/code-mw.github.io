@@ -50,8 +50,7 @@ const LEVEL_LABELS = [
   "Expert",
 ] as const;
 
-export const levelLabel = (level: number): string =>
-  LEVEL_LABELS[level] ?? "";
+export const levelLabel = (level: number): string => LEVEL_LABELS[level] ?? "";
 
 export const profile: Profile = {
   firstName: "Marcin",
